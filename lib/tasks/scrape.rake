@@ -1,5 +1,6 @@
  	require 'nokogiri'
  	require 'open-uri'
+    require 'json'
  	namespace :scrape do
  		desc "TODO"
  		task get_scrape: :environment do
@@ -18,7 +19,8 @@
 
      	get_value =  get_proper_text(row.text)
      	p get_value
-     	final_output  << Hash[get_header_from_table.zip get_value ]
+        my_hash = Hash[get_header_from_table.zip get_value ]
+     	final_output  << my_hash.to_json
      end
     # render json: final_output
     p  final_output
